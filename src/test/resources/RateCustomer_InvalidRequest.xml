@@ -1,0 +1,10 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://controller.springbootsoap.maaanu/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <ser:rateCustomer>
+            <arg0>
+                <firstName>Harry</firstName>
+            </arg0>
+        </ser:rateCustomer>
+    </soapenv:Body>
+</soapenv:Envelope>
