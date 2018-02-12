@@ -27,19 +27,4 @@ public class TestUtils {
        return String.join("", readLines(file));
     }
 
-    public static <ReturnType> ReturnType parseSOAPResponse(InputStream stream, Class clazz) throws JAXBException, ParserConfigurationException, IOException, SAXException, XPathExpressionException {
-        JAXBContext jc = JAXBContext.newInstance(clazz);
-        Unmarshaller u = jc.createUnmarshaller();
-        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        documentBuilderFactory.setNamespaceAware(true);
-        Document doc = documentBuilderFactory.newDocumentBuilder().parse(stream);
-        doc.getDocumentElement().normalize();
-        XPath xPath = XPathFactory.newInstance().newXPath();
-        NodeList nodes = (NodeList) xPath.evaluate("//return", doc.getDocumentElement(), XPathConstants.NODESET);
-        Node node = nodes.item(0);
-
-        JAXBElement<ReturnType> response = u.unmarshal(node, clazz);
-        return response.getValue();
-    }
-
 }

@@ -2,6 +2,7 @@ package maaanu.springbootsoap.service;
 
 import maaanu.springbootsoap.connector.CustomerRepository;
 import maaanu.springbootsoap.exception.CustomerNotFoundException;
+import maaanu.springbootsoap.exception.CustomerNotFoundMessage;
 import maaanu.springbootsoap.model.CustomerDto;
 import maaanu.springbootsoap.model.Rating;
 import maaanu.springbootsoap.model.RatingResponse;
@@ -21,7 +22,7 @@ public class CustomerRatingService {
     public RatingResponse rateCustomer (String firstName, String lastName) throws CustomerNotFoundException {
         return customerRepository.findByFirstNameAndLastName(firstName, lastName)
                 .map(this::createRatingResponse)
-                .orElseThrow(CustomerNotFoundException::new);
+                .orElseThrow(() -> new CustomerNotFoundException("How long is forever?", new CustomerNotFoundMessage("Sometimes, just one second.")));
     }
 
     private RatingResponse createRatingResponse(CustomerDto customer) {
