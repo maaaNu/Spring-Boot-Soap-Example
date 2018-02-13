@@ -12,28 +12,10 @@ import javax.xml.ws.Endpoint;
 
 @Configuration
 public class SoapServiceConfiguration {
-    private static final String WEB_SERVICE_WSDL_SUFFIX = ".wsdl";
-    private final CustomerRatingService customerRatingService;
-
-    public SoapServiceConfiguration(CustomerRatingService customerRatingService) {
-        this.customerRatingService = customerRatingService;
-    }
 
     @Bean(name= Bus.DEFAULT_BUS_ID)
     public SpringBus springBus() {
         return new SpringBus();
     }
 
-    @Bean
-    public CustomerRatingController customerRatingEndpoint() {
-        return new CustomerRatingController(customerRatingService);
-    }
-
-    @Bean
-    public Endpoint endpoint() {
-        final EndpointImpl endpoint = new EndpointImpl(springBus(), customerRatingEndpoint());
-        endpoint.publish(CustomerRatingController.ENDPOINT_ADDR);
-        endpoint.setWsdlLocation(CustomerRatingController.ENDPOINT_ADDR + WEB_SERVICE_WSDL_SUFFIX);
-        return endpoint;
-    }
 }

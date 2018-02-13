@@ -1,7 +1,5 @@
 package maaanu.springbootsoap.exception;
 
-import maaanu.springbootsoap.controller.jaxws.CustomerNotFoundExceptionBean;
-
 import javax.xml.ws.WebFault;
 
 @WebFault
