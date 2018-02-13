@@ -40,7 +40,7 @@ public class SoapEndpointPublisher {
                 .filter(str -> !str.isEmpty())
                 .collect(Collectors.toList());
 
-        if(list.size() > 1) LOG.error("Multiple Fields are with @Route declared!");
+        if(list.size() > 1) LOG.error("Multiple Fields are declared with @Route!");
         if(list.size() == 0) {
             LOG.info("No Field is declared @Route - using Classname as route");
             return Optional.empty();
