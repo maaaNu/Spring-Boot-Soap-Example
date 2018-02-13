@@ -26,7 +26,7 @@ public class SoapEndpointPublisher {
     }
 
     @PostConstruct
-    public void onApplicationEvent() {
+    public void afterBeanContruction() {
         applicationContext.getBeansWithAnnotation(SoapService.class).forEach((beanName, controller) -> {
             String route = returnRouteIfDeclaredWithAnnotation(controller).orElse(controller.getClass().getName());
             createEndpoint(controller, route);
